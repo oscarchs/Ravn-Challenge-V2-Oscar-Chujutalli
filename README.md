@@ -12,3 +12,7 @@ have been carried out on android (virtual/ physical device). In that sense, I re
 </ol>
 
 ## Screenshots
+<img src="https://github.com/oscarchs/Ravn-Challenge-V2-Oscar-Chujutalli/blob/master/screenshots/1.jpg" width="200"/>
+<img src="https://github.com/oscarchs/Ravn-Challenge-V2-Oscar-Chujutalli/blob/master/screenshots/2.jpg" width="200"/>
+<img src="https://github.com/oscarchs/Ravn-Challenge-V2-Oscar-Chujutalli/blob/master/screenshots/3.jpg" width="200"/>
+<img src="https://github.com/oscarchs/Ravn-Challenge-V2-Oscar-Chujutalli/blob/master/screenshots/4.jpg" width="200"/>
