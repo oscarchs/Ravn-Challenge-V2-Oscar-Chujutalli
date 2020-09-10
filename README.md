@@ -8,6 +8,7 @@ have been carried out on android (virtual/ physical device). In that sense, I re
 <li>git clone https://github.com/oscarchs/Ravn-Challenge-V2-Oscar-Chujutalli.git</li>
 <li>cd Ravn-Challenge-V2-Oscar-Chujutalli</li>
 <li>npm install</li>
+<li>npm start</li>
 <li>npx react-native run-android</li>
 </ol>
 
