@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, Button, View, ActivityIndicator, StyleSheet } from 'react-native';
 
 
-const LoadingIndicator = () => {
+const LoadingIndicator = ({state}) => {
 
   return (
     <View style={styles.loadingView}>
@@ -24,6 +24,5 @@ const styles = StyleSheet.create({
   }
 
 })
-
 
 export default LoadingIndicator;

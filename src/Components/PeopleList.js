@@ -3,13 +3,14 @@ import { Text, Button, View, TouchableOpacity, StyleSheet, FlatList } from 'reac
 import { ListItem, Divider } from 'react-native-elements'
 import { Icon } from 'react-native-elements'
 import { useNavigation } from '@react-navigation/native';
+import Separator from './Separator';
 
 const PeopleList = ({ data }) => {
 
   const navigation = useNavigation();
 
   const Item = ({ item }) => (
-    <TouchableOpacity onPress={ () => navigation.navigate('singlePersonPage', { title: item.name, personDetails: item })}>
+    <TouchableOpacity onPress={ () => navigation.navigate('singlePersonPage', { title: item.name, personId: item.id })}>
       <View style={styles.itemContainer}>
         <View style={styles.titleView}>
           <Text style={styles.P1}>{item.name}</Text>
@@ -22,16 +23,12 @@ const PeopleList = ({ data }) => {
     </TouchableOpacity>
   );
 
-  const Separator = () => (
-    <Divider style={styles.ItemDivider} />
-  )
-
   return (
       <FlatList
         data={data}
         renderItem={ ({item}) => (<Item item={item}/>) }
         keyExtractor={item => item.id}
-        ItemSeparatorComponent = { Separator }
+        ItemSeparatorComponent = { () =>(<Separator/>) }
       />
   );
 };
@@ -56,17 +53,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: 'rgba(0,0,0,0.5)'
   },
-
-  ItemDivider: {
-    color: 'rgba(0,0,0,0.5)',
-    marginLeft: 16
-  }
 })
 
 export default PeopleList;
-
-
-
-
-
                      

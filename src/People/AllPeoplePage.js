@@ -6,8 +6,6 @@ import LoadingIndicator from '../Components/LoadingIndicator';
 
 const AllPeoplePage = () => {
 
-  const [styleStatusBar, setStyleStatusBar] = useState('light-content');
-  
   const { loading, error, data, fetchMore } = useQuery(ALL_PEOPLE_QUERY,
     {
       variables: {
@@ -33,9 +31,6 @@ const ALL_PEOPLE_QUERY = gql`
     allPeople(after: $after ,first: $limit){
       people{
         id
-        birthYear
-        skinColor
-        hairColor
         name
         species {
           name
