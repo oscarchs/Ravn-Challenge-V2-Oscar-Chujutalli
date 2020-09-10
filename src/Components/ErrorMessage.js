@@ -2,11 +2,10 @@ import React from 'react';
 import { Text, Button, View, ActivityIndicator, StyleSheet } from 'react-native';
 
 
-const LoadingIndicator = ({message}) => {
+const ErrorMessage = ({message}) => {
 
   return (
     <View style={styles.loadingView}>
-      <ActivityIndicator color="rgba(0,0,0,0.5)" />
       <Text style={styles.loadingText}>{message}</Text>
     </View>
   );
@@ -20,9 +19,10 @@ const styles = StyleSheet.create({
   },
 
   loadingText: {
-    marginLeft: 8
+    marginLeft: 8,
+    color:'#EC5757'
   }
 
 })
 
-export default LoadingIndicator;
+export default ErrorMessage;

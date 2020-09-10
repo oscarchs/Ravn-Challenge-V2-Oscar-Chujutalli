@@ -2,11 +2,11 @@ import React from 'react';
 import { Text, Button, View, TouchableOpacity, StyleSheet, FlatList, Divider } from 'react-native';
 import Separator from './Separator';
 
-const GeneralInformation = ({person}) => {
+const VehiclesInformation = ({vehicles}) => {
 
   const TitleComponent = () => (
     <View style={styles.sectionHeaderContainer}>
-      <Text style={styles.sectionHeaderText}>General Information</Text>
+      <Text style={styles.sectionHeaderText}>Vehicles</Text>
     </View>
   )
 
@@ -20,11 +20,10 @@ const GeneralInformation = ({person}) => {
     <>
       <TitleComponent/>
       {
-        Object.keys(person).map( (key, index)=>(
+        Object.keys(vehicles).map( (key, index)=>(
           <View key={key}>
-          <View style={{flexDirection: 'row', alignItems:'center', justifyContent:'space-between', margin:16}}>
-            <Text style={styles.H2Low}>{formatCamelCase(key)}</Text>
-            <Text style={styles.H2}>{person[key]}</Text>
+          <View style={styles.listItemContainer}>
+            <Text style={styles.H2Low}>{vehicles[key].name}</Text>
           </View>
           <Separator/>
           </View>
@@ -35,11 +34,15 @@ const GeneralInformation = ({person}) => {
 };
 
 const styles = StyleSheet.create({
+  listItemContainer: {
+    flexDirection: 'row', 
+    alignItems:'center',
+    margin:16
+  },
   sectionHeaderContainer: {
     paddingLeft: 16,
     paddingRight: 16
   },
-
   sectionHeaderText: {
     marginTop:32,
     marginBottom: 8,
@@ -48,9 +51,10 @@ const styles = StyleSheet.create({
   H2: {
     fontSize: 16,
     textTransform: 'capitalize',
-  },
 
+  },
   H2Low: {
+    textTransform: 'capitalize',
     fontSize: 16,
     color: 'rgba(0,0,0,0.5)'
   },
@@ -61,4 +65,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default GeneralInformation;
+export default VehiclesInformation;

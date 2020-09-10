@@ -1,28 +1,53 @@
 import React, { useEffect, useState } from 'react';
-import { Text, Button } from 'react-native';
+import { Text, Button, View, StyleSheet } from 'react-native';
 import { gql, useQuery } from '@apollo/client';
 import PeopleList from '../Components/PeopleList';
 import LoadingIndicator from '../Components/LoadingIndicator';
+import ErrorMessage from '../Components/ErrorMessage';
+
 
 const AllPeoplePage = () => {
 
   const { loading, error, data, fetchMore } = useQuery(ALL_PEOPLE_QUERY,
     {
       variables: {
-        limit: 10
-      }
+        limit: 5
+      },
+      fetchPolicy: "cache-and-network"
     });
 
-  return (
-    <>
-       {data ?
-          (
-            <PeopleList data={data.allPeople.people}/>
-          ) :
-            <LoadingIndicator/>
+  if (loading && data === null) return (
+    <LoadingIndicator message={"Loading"}/>
+  );
+    
+  if (error) {
+    return (
+      <ErrorMessage message={"Failed to Load Data"}/>
+    );}
 
-       }
-    </>
+  if(data && !error && !loading){
+    if(data.allPeople.pageInfo.hasNextPage === true){
+      fetchMore({
+        variables: {
+          after: data.allPeople.pageInfo.endCursor,
+          limit: 5
+        },
+        updateQuery: (prev, { fetchMoreResult }) => {
+          if (!fetchMoreResult){
+            return prev;
+          }
+          return Object.assign({}, prev, fetchMoreResult);
+        }
+       });
+    }
+  }
+  
+  return (
+      <View>
+        {
+          data && <PeopleList data={data.allPeople.people} loading={loading}/>
+        }
+      </View>
   );
 };
 
@@ -45,26 +70,3 @@ const ALL_PEOPLE_QUERY = gql`
 `;
 
 export default AllPeoplePage;
-
-/*  const fetchAfterTime = () => {
-
-    if( data ){
-      fetchMore({
-              variables: {
-                after: data.allPeople.pageInfo.endCursor,
-                limit: 5
-              },
-              updateQuery: (prev, { fetchMoreResult }) => {
-                if (!fetchMoreResult) return prev;
-                return Object.assign({}, prev, {
-                  data: [...prev, ...fetchMoreResult]
-                });
-              }
-          });
-      console.log(data);
-    }
-  }
-
-  if(error){
-    console.log(error);
-  }*/
