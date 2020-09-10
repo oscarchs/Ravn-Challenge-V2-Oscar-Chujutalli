@@ -8,10 +8,21 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import Routes from './src/Routes';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { StatusBar } from 'react-native';
 
 const App: () => React$Node = () => {
+
+  const apolloClient = new ApolloClient({
+    cache: new InMemoryCache(),
+    uri: 'https://swapi-graphql-ravn.herokuapp.com/',
+  });
+
   return (
-    <Routes/>
+    <ApolloProvider client={apolloClient}>
+      <StatusBar barStyle="ligh-content" backgroundColor={'#121212'} />
+      <Routes/>
+    </ApolloProvider>
    )
 };
 

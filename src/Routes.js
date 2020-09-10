@@ -7,6 +7,17 @@ import StackHeader from './Components/StackHeader';
 
 const PeopleStack = createStackNavigator();
 
+Routes = () => {
+
+  return (
+    <NavigationContainer initialRouteName="allPeoplePage">
+      <PeopleStack.Navigator headerMode="float">
+          <PeopleStack.Screen name="allPeoplePage" component={AllPeoplePage} options={headerOptions("People of Star Wars")} />
+          <PeopleStack.Screen name="singlePersonPage" component={SinglePersonPage} options={({ route }) => (headerOptions(route.params.title))}/>
+      </PeopleStack.Navigator>
+    </NavigationContainer>
+  );
+}
 
 const headerOptions = (title) => ({
   title: title,
@@ -15,19 +26,10 @@ const headerOptions = (title) => ({
     backgroundColor: '#121212',
   },
   headerTintColor: '#fff',
+  headerTitleAllowFontScalling: true,
+  headerTitleStyle: {
+    fontSize:16
+  }
 })
-
-
-Routes = () => {
-
-  return (
-    <NavigationContainer initialRouteName="allPeoplePage">
-      <PeopleStack.Navigator>
-          <PeopleStack.Screen name="allPeoplePage" component={AllPeoplePage} options={headerOptions("People of Star Wars")} />
-          <PeopleStack.Screen name="singlePersonPage" component={SinglePersonPage} options={({ route }) => (headerOptions(route.params.title))}/>
-      </PeopleStack.Navigator>
-    </NavigationContainer>
-  );
-}
 
 export default Routes;
